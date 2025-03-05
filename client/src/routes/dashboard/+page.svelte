@@ -56,7 +56,7 @@
 <main class="p-5">
     {#if notes && notes.length > 0}
         <div class="grid gap-5 mt-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center sm:justify-items-start">
-            {#each notes as note, index (note.id)}
+            {#each notes as note}
                 <Note 
                     note={note}
                     onDeleteNote={handleDeleteNote}
