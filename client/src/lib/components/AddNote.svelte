@@ -6,7 +6,7 @@
          date=new Date().toISOString().split('T')[0]} = $props()
 </script>
 
-{*<button class="fixed inset-0 bg-opacity-50 backdrop-blur-xs z-40" onclick={onClose}><div>backdrop</div></button>*}
+{/*<button class="fixed inset-0 bg-opacity-50 backdrop-blur-xs z-40" onclick={onClose}><div>backdrop</div></button>*/}
 
 <div 
     class="addNote bg-yellow-200 p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text" 
