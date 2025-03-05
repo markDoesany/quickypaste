@@ -3,7 +3,7 @@ FROM golang:1.24-alpine AS builder
 WORKDIR /app
 
 # Copy Go modules files and download dependencies
-COPY backend/go.mod go.sum ./
+COPY backend/go.mod backend/go.sum ./
 RUN go mod download
 
 # Copy the entire backend code
