@@ -23,7 +23,7 @@ WORKDIR /root/
 
 # Copy the compiled binary from the builder stage
 COPY --from=builder /app/main .
-#COPY backend/cmd/quickypaste/.env .env
+COPY backend/cmd/quickypaste/.env .env
 
 # Expose the application port (change if needed)
 EXPOSE 8080
