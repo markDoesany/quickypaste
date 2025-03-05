@@ -3,14 +3,14 @@ FROM golang:1.24-alpine AS builder
 WORKDIR /app
 
 # Copy Go modules files and download dependencies
-COPY go.mod go.sum ./
+COPY backend/go.mod go.sum ./
 RUN go mod download
 
 # Copy the entire backend code
 COPY . .
 
 # Set working directory for the build process
-WORKDIR /app/cmd/quickypaste
+WORKDIR /app/backend/cmd/quickypaste
 
 # Build the Go application
 RUN go build -o /app/main .
@@ -22,8 +22,8 @@ FROM alpine:latest
 WORKDIR /root/
 
 # Copy the compiled binary from the builder stage
-COPY --from=builder /app/main .
-COPY cmd/quickypaste/.env .env
+COPY --from=builder /app/backend/main .
+COPY backend/cmd/quickypaste/.env .env
 
 # Expose the application port (change if needed)
 EXPOSE 8080
