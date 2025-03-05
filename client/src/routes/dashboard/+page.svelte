@@ -53,30 +53,32 @@
 </script>
 
 <ProtectedRoute redirect="/login"/>
-    {#if notes.length > 0}
-        <main class="p-5">
-            <div class="grid gap-5 mt-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center sm:justify-items-start">
-                {#each notes as note, index}
-                    <Note 
-                        note={note}
-                        onDeleteNote={handleDeleteNote}
-                        onUpdateNote={handleUpdateNote}
-                    />
-                {/each}
-            </div>
+<main class="p-5">
+    {#if notes && notes.length > 0}
+        <div class="grid gap-5 mt-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center sm:justify-items-start">
+            {#each notes as note, index (note.id)}
+                <Note 
+                    note={note}
+                    onDeleteNote={handleDeleteNote}
+                    onUpdateNote={handleUpdateNote}
+                />
+            {/each}
+        </div>
+    {:else}
+        <p class="text-center">Create new note</p>
+    {/if}
 
-            {#if addNote}
-                <AddNote onClose={handleCloseAddNote} onSaveNewNote={handleAddNewNote}/>
-            {/if}
+    {#if addNote}
+        <AddNote onClose={handleCloseAddNote} onSaveNewNote={handleAddNewNote}/>
+    {/if}
 
-        </main>
-        {:else}
-            <p class="text-center">Create new note</p>
-        {/if}
-        <button 
-            onclick={handleAddClick} 
-            class="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline cursor-pointer z-30"
-        >
-            <Plus class="w-6 h-6" />
-        </button>
+    <button 
+        on:click={handleAddClick} 
+        class="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline cursor-pointer z-30"
+    >
+        <Plus class="w-6 h-6" />
+    </button>
+</main>
+
+      
 
