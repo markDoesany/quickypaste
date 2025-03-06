@@ -37,6 +37,8 @@
     };
 
     const handleDeleteNote = async(noteId) => {
+        if (window.confirm("Delete note?")) return
+        
         console.log('Delete note', noteId);
         const res = await DeleteNote(noteId);
         if (res !== true) return
@@ -73,7 +75,7 @@
     {/if}
 
     <button 
-        on:click={handleAddClick} 
+        onclick={handleAddClick} 
         class="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline cursor-pointer z-30"
     >
         <Plus class="w-6 h-6" />
