@@ -127,7 +127,7 @@
                                                     focus:outline-none focus:shadow-outline cursor-pointer max-sm:font-semibold max-sm:text-sm max-sm:px-2">Cancel</button>
         </div>
     {:else}
-        <div class="text-gray-800 content mt-4">{editableContent}</div>
+        <div class="text-gray-800 content mt-4 overflow-y-hidden p-2">{editableContent}</div>
     {/if}
     
     {#if !expanded && disable === false}
