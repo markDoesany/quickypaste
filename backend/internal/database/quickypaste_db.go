@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/smokeyghost/QuickyPaste/internal/models"
-	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
@@ -14,7 +14,7 @@ var DB *gorm.DB
 
 func InitializeDB() {
 	dsn := os.Getenv("DSN")
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Failed to connect to the database", err)
 	}
