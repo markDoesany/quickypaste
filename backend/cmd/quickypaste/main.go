@@ -31,5 +31,5 @@ func main() {
 	handler := c.Handler(r)
 
 	fmt.Printf("Server running  on Port %s", os.Getenv("PORT"))
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("SERVER_PORT")), handler))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("PORT")), handler))
 }
