@@ -19,7 +19,7 @@
 </script>
 
 <header class="header">
-    <button class="text-2xl font-bold cursor-pointer max-sm:text-lg" onclick={() => goto('/dashboard')}>QuickyPaste</button>
+    <button class="text-2xl font-bold cursor-pointer max-sm:text-lg" onclick={() => goto('/dashboard')}>QuickPaste</button>
     <nav class="cursor-pointer">
         {#if isLoggedIn}
             <button 

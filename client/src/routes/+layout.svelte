@@ -1,4 +1,3 @@
-<!-- filepath: /c:/Users/emman/OneDrive/Documents/Project/QuickyPaste/client/src/routes/__layout.svelte -->
 <script>
     import { page } from '$app/stores';
     import Header from '$lib/components/Header.svelte';

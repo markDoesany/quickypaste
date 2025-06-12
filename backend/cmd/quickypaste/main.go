@@ -22,7 +22,7 @@ func main() {
 	routes.RegisterNoteRoutes(r)
 
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"https://quickypaste.vercel.app", "https://qappslock-quickypaste.onrender.com"},
+		AllowedOrigins:   []string{"https://quickypaste.vercel.app", "https://qappslock-quickypaste.onrender.com", "quickpaste.qappslock.com"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Authorization", "Content-Type"},
 		AllowCredentials: true,
