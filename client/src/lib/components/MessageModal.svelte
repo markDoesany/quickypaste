@@ -18,7 +18,7 @@
 
 {#if show}
     <div 
-        class="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50"
+        class="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-99"
         tabindex="0"
         on:keydown={handleKeydown}
     >
