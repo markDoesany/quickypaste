@@ -32,12 +32,28 @@
         handleCloseAddNote();
     };
 
-    const handleDeleteNote = async(noteId) => {
-        if (!window.confirm("Delete note?")) return
+    let showDeleteModal = false;
+    let deleteNoteId = null;
+    let deleteMessage = '';
 
-        const res = await DeleteNote(noteId);
-        if (res !== true) return
-        notes = notes.filter(note => note.ID !== noteId);
+    const handleDeleteNote = async(noteId) => {
+        deleteNoteId = noteId;
+        deleteMessage = 'Are you sure you want to delete this note?';
+        showDeleteModal = true;
+    };
+
+    const confirmDelete = async() => {
+        const res = await DeleteNote(deleteNoteId);
+        if (res !== true) return;
+        
+        notes = notes.filter(note => note.ID !== deleteNoteId);
+        showDeleteModal = false;
+        deleteNoteId = null;
+    };
+
+    const cancelDelete = () => {
+        showDeleteModal = false;
+        deleteNoteId = null;
     };
 
     const handleUpdateNote = async(note) => {
@@ -55,13 +71,25 @@
             {#each notes as note}
                 <Note 
                     note={note}
-                    onDeleteNote={handleDeleteNote}
+                    onDeleteNote={() => handleDeleteNote(note.ID)}
                     onUpdateNote={handleUpdateNote}
                 />
             {/each}
         </div>
     {:else}
-        <p class="text-center">Create new note</p>
+        <div class="text-center text-gray-600 py-10">
+            No notes found
+        </div>
+    {/if}
+
+    {#if showDeleteModal}
+        <MessageModal 
+            message={deleteMessage}
+            show={showDeleteModal}
+            onClose={cancelDelete}
+            onConfirm={confirmDelete}
+            isConfirm={true}
+        />
     {/if}
 
     {#if addNote}
