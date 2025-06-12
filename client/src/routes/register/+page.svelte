@@ -12,8 +12,12 @@
 
     const handleRegister = async({username, password}) => {
         if (username === "" || password === ""){
-            alert("Please fill in all fields")
-            return
+            message = "Please fill in all fields";
+            showMessage = true;
+            modalOnClose = () => {
+                showMessage = false;
+            };
+            return;
         }
 
         loading = true;

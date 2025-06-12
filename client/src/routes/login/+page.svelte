@@ -2,13 +2,22 @@
     import AuthenticatedRoute from "$lib/components/AuthenticatedRoute.svelte";
     import Form from "$lib/components/Form.svelte";
     import { login } from "$lib/api/auth";
+    import MessageModal from "$lib/components/MessageModal.svelte";
+
+    let showMessage = false;
+    let message = '';
+    let modalOnClose = () => {};
 
     let loading = false;
 
     const handleLogin = async({username, password}) =>{
         if (username === "" || password === ""){
-            alert("Please fill in all fields")
-            return
+            message = "Please fill in all fields";
+            showMessage = true;
+            modalOnClose = () => {
+                showMessage = false;
+            };
+            return;
         }
 
         loading = true;
@@ -35,4 +44,9 @@
             <h2 class="text-center text-2xl font-bold mb-6">Login Form</h2>
         <Form onSubmit={handleLogin} buttonText="Login"/>
     </div>
+    <MessageModal 
+        message={message}
+        show={showMessage}
+        onClose={modalOnClose}
+    />
 </main>

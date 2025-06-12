@@ -71,12 +71,17 @@
         }
     }
 
+    let isConfirmingDelete = false;
+
     const handleDeleteNote = (e) => {
         e.stopPropagation();
         message = 'Are you sure you want to delete this note?';
         showMessage = true;
         modalOnClose = () => {
             showMessage = false;
+        };
+        onConfirm = () => {
+            onDeleteNote(note);
         };
     }
 
@@ -98,8 +103,9 @@
     message={message}
     show={showMessage}
     onClose={modalOnClose}
+    onConfirm={onConfirm}
+    isConfirm={message.includes('delete')}
 />
-
 
 <div 
     class="note {expanded ? 'expanded' : 'collapsed transform transition-transform duration-200 hover:scale-110'} bg-yellow-200 p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text" 
