@@ -52,7 +52,6 @@
             modalOnClose = () => {
                 showMessage = false;
             };
-            console.log("Copy content")
         } catch (error) {
             console.error("Failed to copy: ", error);
         }
@@ -67,7 +66,6 @@
             modalOnClose = () => {
                 showMessage = false;
             };
-            console.log("Copy link")
         } catch (error) {
             console.error("Failed to copy: ", error);
         }
