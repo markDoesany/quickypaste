@@ -98,7 +98,7 @@
     />
 
 <div 
-    class="note {expanded ? 'expanded fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2' : 'collapsed transform transition-transform duration-200 hover:scale-110'} bg-yellow-200 p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text" 
+    class="note {expanded ? 'expanded' : 'collapsed transform transition-transform duration-200 hover:scale-110'} bg-yellow-200 p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text" 
     onclick={expandNote}
     onkeydown={handleKeyDown}
     tabindex="0"
@@ -164,3 +164,18 @@
         </div>
     {/if}
 </div>
+
+<style>
+    .note.expanded {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 50;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+</style>
