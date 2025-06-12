@@ -96,14 +96,14 @@
     />
 
 <div 
-    class="note {expanded ? 'expanded' : 'collapsed transform transition-transform duration-200 hover:scale-110'} bg-yellow-200 p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text" 
+    class="note overflow-y-auto {expanded ? 'expanded' : 'collapsed transform transition-transform duration-200 hover:scale-110'} bg-yellow-200 p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text" 
     onclick={expandNote}
     onkeydown={handleKeyDown}
     tabindex="0"
     aria-expanded={expanded}
     role="button"
 >
-    <div class="flex justify-between items-center overflow-auto">
+    <div class="flex justify-between items-center">
         <div class="text-gray-600 text-sm mt-3">{formatReadableDate(note.UpdatedAt)}</div>
         {#if expanded}
             <button onclick={(e)=> handleCloseNote(e)}>
