@@ -1,6 +1,6 @@
 <style>
     .landing {
-     @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
         font-family: 'Indie Flower', cursive;
     }
 </style>
