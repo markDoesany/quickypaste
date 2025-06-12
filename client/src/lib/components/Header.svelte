@@ -28,7 +28,7 @@
             >
                 Logout
             </button>
-        {:else}
+        <!-- {:else}
             <a 
                 href="/login" 
                 class=" focus:outline-none focus:shadow-outline max-sm:text-sm max-sm:p-2"
@@ -40,7 +40,7 @@
                 class="focus:outline-none focus:shadow-outline max-sm:text-sm max-sm:p-2"
             >
                 Sign Up
-            </a>
+            </a> -->
         {/if}
     </nav>
 </header>
