@@ -1,8 +1,15 @@
 <script>
     import { Copy, Edit, X, Share2, Trash } from 'lucide-svelte';
     import { formatReadableDate } from '../../utils/helper';
+    import { generateHash, hashStore } from '../../utils/hash';
     import './css/index.css'
     import MessageModal from './MessageModal.svelte';
+
+    // Generate hash when note is created
+    if (!hashStore.getHash(note.ID)) {
+        const hash = generateHash(note.ID);
+        hashStore.setHash(note.ID, hash);
+    }
 
     let showMessage = false;
     let message = '';
@@ -100,6 +107,7 @@
     onclick={expandNote}
     onkeydown={handleKeyDown}
     tabindex="0"
+    data-hash={hashStore.getHash(note.ID)}
     aria-expanded={expanded}
     role="button"
 >
