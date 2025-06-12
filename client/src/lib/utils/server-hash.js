@@ -6,18 +6,18 @@ export const generateHash = (id) => {
 
 export const hashStore = {
     getHash: (id) => {
-        const mapping = JSON.parse(localStorage.getItem('noteHashes') || '{}');
+        const mapping = JSON.parse(process.env.NOTE_HASHES || '{}');
         return mapping[id];
     },
     
     setHash: (id, hash) => {
-        const mapping = JSON.parse(localStorage.getItem('noteHashes') || '{}');
+        const mapping = JSON.parse(process.env.NOTE_HASHES || '{}');
         mapping[id] = hash;
-        localStorage.setItem('noteHashes', JSON.stringify(mapping));
+        process.env.NOTE_HASHES = JSON.stringify(mapping);
     },
     
     getIDFromHash: (hash) => {
-        const mapping = JSON.parse(localStorage.getItem('noteHashes') || '{}');
+        const mapping = JSON.parse(process.env.NOTE_HASHES || '{}');
         return Object.entries(mapping).find(([_, storedHash]) => storedHash === hash)?.[0];
     }
 };
