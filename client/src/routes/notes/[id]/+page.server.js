@@ -1,18 +1,7 @@
-import { GetNote } from '$lib/api/note.js';
-import { hashStore } from '$lib/utils/server-hash.js';
+import { GetNote } from '$lib/api/note.js'
 
-export async function load({ params }) {
-    const { id } = params;
-    const noteId = hashStore.getIDFromHash(id);
-    
-    if (!noteId) {
-        return { status: 404, error: 'Note not found' };
+export async function load({params}){
+        const { id } = params
+        const note = await GetNote(id)
+        return {note}
     }
-    
-    const note = await GetNote(noteId);
-    if (!note) {
-        return { status: 404, error: 'Note not found' };
-    }
-    
-    return { note };
-}

@@ -1,30 +1,17 @@
 <script>
     import { Copy, Edit, X, Share2, Trash } from 'lucide-svelte';
     import { formatReadableDate } from '../../utils/helper';
-    import { generateHash, hashStore } from '$lib/utils/hash';
     import './css/index.css'
     import MessageModal from './MessageModal.svelte';
-
-    export let note;
-    export let onDeleteNote;
-    export let onUpdateNote;
-    export let disable = false;
-
-    // Generate hash when note is created
-    $: if (note && !hashStore.getHash(note.ID)) {
-        const hash = generateHash(note.ID);
-        hashStore.setHash(note.ID, hash);
-    }
 
     let showMessage = false;
     let message = '';
     let modalOnClose = () => {};
 
-    $: editableContent = note?.content || '';
-
-    $: if (note) {
-        editableContent = note.content;
-    }
+    export let note;
+    export let onDeleteNote;
+    export let onUpdateNote;
+    export let disable = false;
 
     let isEditing = false;
     let expanded = false;
@@ -107,12 +94,12 @@
         show={showMessage}
         onClose={modalOnClose}
     />
+
 <div 
     class="note {expanded ? 'expanded' : 'collapsed transform transition-transform duration-200 hover:scale-110'} bg-yellow-200 p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text" 
     onclick={expandNote}
     onkeydown={handleKeyDown}
     tabindex="0"
-    data-hash={hashStore.getHash(note.ID)}
     aria-expanded={expanded}
     role="button"
 >
