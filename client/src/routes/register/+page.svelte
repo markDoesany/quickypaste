@@ -4,11 +4,11 @@
     import {register} from "$lib/api/auth";
     import MessageModal from "$lib/components/MessageModal.svelte";
 
-    let showMessage = false;
-    let message = '';
+    let showMessage = $state(false);
+    let message = $state('');
     let modalOnClose = () => {};
 
-    let loading = false;
+    let loading = $state(false);
 
     const handleRegister = async({username, password}) => {
         if (username === "" || password === ""){
@@ -49,7 +49,7 @@
         <p class="text-xl mb-8">Your personal notes manager</p>
         <div class="p-4 rounded-lg shadow-md">
             <h2 class="text-center text-2xl font-bold mb-6">Register Form</h2>
-        <Form onSubmit={handleRegister} buttonText="Register"/>
+        <Form onSubmit={handleRegister} buttonText="Register" loading={loading}/>
         <MessageModal 
             message={message}
             show={showMessage}

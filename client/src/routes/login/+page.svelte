@@ -4,11 +4,11 @@
     import { login } from "$lib/api/auth";
     import MessageModal from "$lib/components/MessageModal.svelte";
 
-    let showMessage = false;
-    let message = '';
+    let showMessage = $state(false);
+    let message = $state('');
     let modalOnClose = () => {};
 
-    let loading = false;
+    let loading = $state(false);
 
     const handleLogin = async({username, password}) =>{
         if (username === "" || password === ""){
@@ -42,7 +42,7 @@
         <p class="text-xl mb-8">Your personal notes manager</p>
         <div class="p-4 rounded-lg shadow-md">
             <h2 class="text-center text-2xl font-bold mb-6">Login Form</h2>
-        <Form onSubmit={handleLogin} buttonText="Login"/>
+        <Form onSubmit={handleLogin} buttonText="Login" loading={loading}/>
     </div>
     <MessageModal 
         message={message}
