@@ -25,7 +25,6 @@
             await register(username, password);
             message = 'Registration successful! Redirecting to login...';
             showMessage = true;
-            modalOnClose();
             goto('/login')
         } finally {
             loading = false;
