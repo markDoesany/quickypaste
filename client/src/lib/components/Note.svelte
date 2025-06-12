@@ -98,7 +98,7 @@
     />
 
 <div 
-    class="note {expanded ? 'expanded' : 'collapsed transform transition-transform duration-200 hover:scale-110'} bg-yellow-200 p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text" 
+    class="note {expanded ? 'expanded fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2' : 'collapsed transform transition-transform duration-200 hover:scale-110'} bg-yellow-200 p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text" 
     onclick={expandNote}
     onkeydown={handleKeyDown}
     tabindex="0"
@@ -164,17 +164,3 @@
         </div>
     {/if}
 </div>
-
-                </button>
-            </div>
-        </div>
-    {/if}
-</div>
-
-        <div class="text-gray-800 content mt-4 overflow-y-hidden p-2">{editableContent}</div>
-    </div>
-{/if}
-
-        <div class="text-gray-800 content mt-4 overflow-y-hidden p-2">{editableContent}</div>
-    </div>
-{/if}
