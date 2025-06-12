@@ -75,6 +75,7 @@
     let confirmDelete = () => {};
 
     const handleDeleteNote = (e) => {
+        e.stopPropagation()
         onDeleteNote(note);
     }
 
@@ -101,8 +102,8 @@
 />
 
 {#if expanded}
-    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-yellow-200 p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text w-full max-w-2xl">
+    <div class="fixed inset-0 flex items-center justify-center z-50">
+        <div class="bg-transparent p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text w-full max-w-2xl">
             <div class="flex justify-between items-center">
                 <div class="text-gray-600 text-sm">{formatReadableDate(note.UpdatedAt)}</div>
                 <button onclick={(e)=> handleCloseNote(e)}>
