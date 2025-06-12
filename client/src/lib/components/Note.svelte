@@ -155,6 +155,7 @@
                         </button>
                     </div>
             {/if}
+        </div>
     </div>
     {#if isEditing}
         <textarea bind:value={editableContent} class="w-full h-full px-2 py-4 border rounded focus:outline-none"></textarea>
