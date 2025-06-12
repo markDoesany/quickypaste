@@ -43,9 +43,8 @@
     const confirmDelete = async() => {
         const res = await DeleteNote(currentNoteId);
         if (res !== true) return
-        notes = notes.filter(note => note.ID !== noteId);
+        notes = notes.filter(note => note.ID !== currentNoteId);
         showDeleteModal = false;
-        messageModal.show('Note deleted successfully', 'success');
     };
 
     const cancelDelete = () => {
@@ -91,7 +90,7 @@
 
 <!-- Delete Confirmation Modal -->
 {#if showDeleteModal}
-    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-99">
+    <div class="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-99">
         <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full relative border-2 border-gray-800">
             <button
                 class="absolute top-2 right-2 text-gray-800 hover:text-gray-600"
