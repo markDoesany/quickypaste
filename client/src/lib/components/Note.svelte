@@ -92,12 +92,14 @@
         isEditing = false;
     };
 
-    <MessageModal 
-        message={message}
-        show={showMessage}
-        onClose={modalOnClose}
-    />
 </script>
+
+<MessageModal 
+    message={message}
+    show={showMessage}
+    onClose={modalOnClose}
+/>
+
 
 <div 
     class="note {expanded ? 'expanded' : 'collapsed transform transition-transform duration-200 hover:scale-110'} bg-yellow-200 p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text" 
