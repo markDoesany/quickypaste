@@ -4,27 +4,6 @@
     import './css/index.css'
     import MessageModal from './MessageModal.svelte';
 
-    // Add scrollable styles
-    const styles = {
-        noteContent: {
-            maxHeight: '400px',
-            overflowY: 'auto',
-            padding: '1rem',
-            borderRadius: '0.5rem',
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-            '&::-webkit-scrollbar': {
-                width: '8px'
-            },
-            '&::-webkit-scrollbar-track': {
-                backgroundColor: 'rgba(0, 0, 0, 0.1)'
-            },
-            '&::-webkit-scrollbar-thumb': {
-                backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                borderRadius: '4px'
-            }
-        }
-    };
-
     let showMessage = false;
     let message = '';
     let modalOnClose = () => {};
@@ -124,15 +103,13 @@
     aria-expanded={expanded}
     role="button"
 >
-    <div class="content-container">
-        <div class="flex justify-between items-center">
-            <div class="text-gray-600 text-sm mt-3">{formatReadableDate(note.UpdatedAt)}</div>
-            {#if expanded}
-                <button onclick={(e)=> handleCloseNote(e)}>
-                    <X class="w-5 h-5 text-gray-600 cursor-pointer" />
-                </button>
-                <span class="absolute -top-3 text-3xl">📌</span>
-            {/if}
+    <div class="flex justify-between items-center overflow-auto">
+        <div class="text-gray-600 text-sm mt-3">{formatReadableDate(note.UpdatedAt)}</div>
+        {#if expanded}
+            <button onclick={(e)=> handleCloseNote(e)}>
+                <X class="w-5 h-5 text-gray-600 cursor-pointer" />
+            </button>
+            <span class="absolute -top-3 text-3xl">📌</span>
             {#if disable === false}
                 <div class="flex gap-4 absolute bottom-5 right-5">
                     <button onclick = {(e) => handleToggleEdit(e)}>
@@ -155,7 +132,7 @@
                         </button>
                     </div>
             {/if}
-        </div>
+        {/if}
     </div>
     {#if isEditing}
         <textarea bind:value={editableContent} class="w-full h-full px-2 py-4 border rounded focus:outline-none"></textarea>
