@@ -1,7 +1,7 @@
 <script>
     import { Copy, Edit, X, Share2, Trash } from 'lucide-svelte';
     import { formatReadableDate } from '../../utils/helper';
-    import { generateHash, hashStore } from '../../utils/hash';
+    import { generateHash, hashStore } from '$lib/utils/hash';
     import './css/index.css'
     import MessageModal from './MessageModal.svelte';
 
