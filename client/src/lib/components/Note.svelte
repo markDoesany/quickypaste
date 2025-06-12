@@ -75,12 +75,7 @@
 
     const handleDeleteNote = (e) => {
         e.stopPropagation();
-        message = 'Are you sure you want to delete this note?';
-        showMessage = true;
-        modalOnClose = () => {
-            showMessage = false;
-        };
-        console.log("Delete content")
+        onDeleteNote(note.ID);
     }
 
     const handleKeyDown = (e) => {
@@ -95,12 +90,12 @@
         isEditing = false;
     };
 
-    <MessageModal 
+</script>
+<MessageModal 
         message={message}
         show={showMessage}
         onClose={modalOnClose}
     />
-</script>
 
 <div 
     class="note {expanded ? 'expanded' : 'collapsed transform transition-transform duration-200 hover:scale-110'} bg-yellow-200 p-4 rounded shadow-lg text-left focus:outline-none flex flex-col gap-2 select-text" 
