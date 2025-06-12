@@ -75,18 +75,7 @@
     let confirmDelete = () => {};
 
     const handleDeleteNote = (e) => {
-        e.stopPropagation();
-        message = 'Are you sure you want to delete this note?';
-        showMessage = true;
-        modalOnClose = () => {
-            showMessage = false;
-            isConfirmingDelete = false;
-        };
-        confirmDelete = () => {
-            onDeleteNote(note);
-            modalOnClose();
-        };
-        isConfirmingDelete = true;
+        onDeleteNote(note);
     }
 
     const handleKeyDown = (e) => {
