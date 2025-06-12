@@ -5,8 +5,13 @@
     import './css/index.css'
     import MessageModal from './MessageModal.svelte';
 
+    export let note;
+    export let onDeleteNote;
+    export let onUpdateNote;
+    export let disable = false;
+
     // Generate hash when note is created
-    if (!hashStore.getHash(note.ID)) {
+    $: if (note && !hashStore.getHash(note.ID)) {
         const hash = generateHash(note.ID);
         hashStore.setHash(note.ID, hash);
     }
@@ -15,10 +20,11 @@
     let message = '';
     let modalOnClose = () => {};
 
-    export let note;
-    export let onDeleteNote;
-    export let onUpdateNote;
-    export let disable = false;
+    $: editableContent = note?.content || '';
+
+    $: if (note) {
+        editableContent = note.content;
+    }
 
     let isEditing = false;
     let expanded = false;
