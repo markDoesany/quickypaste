@@ -8,12 +8,15 @@
 
     let addNote = $state(false);
     let notes = $state([]);
+    let loading = $state(false)
 
     onMount(async() => {
+        loading = true;
         const fetchedNotes = await GetNotes();
         if (fetchedNotes.length === 0) return
         
         notes = fetchedNotes;
+        loading = false;
     })
 
     const handleAddClick = () => {
@@ -72,6 +75,8 @@
                 />
             {/each}
         </div>
+    {:else if loading}
+        <p class="text-center">Loading notes...</p>
     {:else}
         <p class="text-center">Create new note</p>
     {/if}

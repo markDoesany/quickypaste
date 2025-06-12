@@ -1,3 +1,15 @@
+<script>
+    import { goto } from '$app/navigation';
+    import { onMount } from 'svelte';
+
+    onMount(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            goto('/dashboard');
+        }
+    });
+</script>
+
 <style>
     .landing {
         @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
