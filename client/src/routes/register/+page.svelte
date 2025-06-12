@@ -17,7 +17,6 @@
         if (username === "" || password === ""){
             message = "Please fill in all fields";
             showMessage = true;
-            modalOnClose();
             return;
         }
 
