@@ -96,7 +96,7 @@
             <button
                 class="absolute top-2 right-2 text-gray-800 hover:text-gray-600"
                 aria-label="Close"
-                on:click={cancelDelete}
+                onclick={cancelDelete}
             >
                 &times;
             </button>
@@ -106,13 +106,13 @@
             <div class="flex gap-4 justify-center">
                 <button
                     class="px-4 py-2 bg-red-500 hover:bg-red-600 rounded font-bold text-white border-2 border-gray-800 transition-all duration-300 transform hover:scale-105"
-                    on:click={confirmDelete}
+                    onclick={confirmDelete}
                 >
                     Delete
                 </button>
                 <button
                     class="px-4 py-2 bg-gray-500 hover:bg-gray-600 rounded font-bold text-white border-2 border-gray-800 transition-all duration-300 transform hover:scale-105"
-                    on:click={cancelDelete}
+                    onclick={cancelDelete}
                 >
                     Cancel
                 </button>
