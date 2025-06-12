@@ -66,7 +66,6 @@ export const DeleteNote = async (id) => {
                 'Content-Type': 'application/json'
             }
         })
-        alert(res.data.message)
         return true
     } catch (error) {
         console.error(error)

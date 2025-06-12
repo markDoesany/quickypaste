@@ -33,7 +33,7 @@
     };
 
     const handleDeleteNote = async(noteId) => {
-        if (!window.confirm("Delete note?")) return
+        // if (!window.confirm("Delete note?")) return
 
         const res = await DeleteNote(noteId);
         if (res !== true) return
