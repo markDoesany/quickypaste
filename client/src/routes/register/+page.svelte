@@ -9,6 +9,7 @@
     let message = $state('');
     let modalOnClose = () => {
         showMessage = false;
+        goto('/login');
     };
 
     let loading = $state(false);
@@ -25,7 +26,6 @@
             await register(username, password);
             message = 'Registration successful! Redirecting to login...';
             showMessage = true;
-            goto('/login')
         } finally {
             loading = false;
         }

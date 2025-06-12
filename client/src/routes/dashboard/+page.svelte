@@ -47,10 +47,20 @@
     };
 
     const confirmDelete = async() => {
-        const res = await DeleteNote(currentNoteId);
-        if (res !== true) return
-        notes = notes.filter(note => note.ID !== currentNoteId);
-        showDeleteModal = false;
+       try {
+            loading = true;
+            const res = await DeleteNote(currentNoteId);
+            if (res !== true){
+                loading = false;
+                return
+            } 
+            notes = notes.filter(note => note.ID !== currentNoteId);
+            showDeleteModal = false;
+       } catch (error) {
+            console.error(error)
+       } finally{
+            loading = false
+       }
     };
 
     const cancelDelete = () => {
@@ -115,7 +125,7 @@
                     class="px-4 py-2 bg-red-500 hover:bg-red-600 rounded font-bold text-white border-2 border-gray-800 transition-all duration-300 transform hover:scale-105"
                     onclick={confirmDelete}
                 >
-                    Delete
+                    {loading ? 'Deleting...' : 'Delete'}
                 </button>
                 <button
                     class="px-4 py-2 bg-gray-500 hover:bg-gray-600 rounded font-bold text-white border-2 border-gray-800 transition-all duration-300 transform hover:scale-105"
