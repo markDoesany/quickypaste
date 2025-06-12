@@ -21,10 +21,12 @@
     };
 
     const handleCloseAddNote = () => {
+        console.log('Close add note');
         addNote = false;
     };
 
     const handleAddNewNote = async(note) => {
+        console.log('Add new note',note.content);
         const res = await AddNewNote(note);
         if (!res) return
         
@@ -32,31 +34,17 @@
         handleCloseAddNote();
     };
 
-    let showDeleteModal = false;
-    let deleteNoteId = null;
-    let deleteMessage = '';
-
     const handleDeleteNote = async(noteId) => {
-        deleteNoteId = noteId;
-        deleteMessage = 'Are you sure you want to delete this note?';
-        showDeleteModal = true;
-    };
+        if (!window.confirm("Delete note?")) return
 
-    const confirmDelete = async() => {
-        const res = await DeleteNote(deleteNoteId);
-        if (res !== true) return;
-        
-        notes = notes.filter(note => note.ID !== deleteNoteId);
-        showDeleteModal = false;
-        deleteNoteId = null;
-    };
-
-    const cancelDelete = () => {
-        showDeleteModal = false;
-        deleteNoteId = null;
+        console.log('Delete note', noteId);
+        const res = await DeleteNote(noteId);
+        if (res !== true) return
+        notes = notes.filter(note => note.ID !== noteId);
     };
 
     const handleUpdateNote = async(note) => {
+        console.log('Update note', note);
         const res = await UpdateNote(note);
         if (!res) return
 
@@ -71,25 +59,13 @@
             {#each notes as note}
                 <Note 
                     note={note}
-                    onDeleteNote={() => handleDeleteNote(note.ID)}
+                    onDeleteNote={handleDeleteNote}
                     onUpdateNote={handleUpdateNote}
                 />
             {/each}
         </div>
     {:else}
-        <div class="text-center text-gray-600 py-10">
-            No notes found
-        </div>
-    {/if}
-
-    {#if showDeleteModal}
-        <MessageModal 
-            message={deleteMessage}
-            show={showDeleteModal}
-            onClose={cancelDelete}
-            onConfirm={confirmDelete}
-            isConfirm={true}
-        />
+        <p class="text-center">Create new note</p>
     {/if}
 
     {#if addNote}
