@@ -6,17 +6,17 @@
 
     let showMessage = $state(false);
     let message = $state('');
-    let modalOnClose = () => {};
-
     let loading = $state(false);
+
+    const modalOnClose = () => {
+        showMessage = false;
+    };
 
     const handleLogin = async({username, password}) =>{
         if (username === "" || password === ""){
             message = "Please fill in all fields";
             showMessage = true;
-            modalOnClose = () => {
-                showMessage = false;
-            };
+            modalOnClose();
             return;
         }
 

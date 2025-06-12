@@ -13,7 +13,10 @@
     onMount(async() => {
         loading = true;
         const fetchedNotes = await GetNotes();
-        if (fetchedNotes.length === 0) return
+        if (fetchedNotes.length === 0) {
+            loading = false;
+            return
+        }
         
         notes = fetchedNotes;
         loading = false;

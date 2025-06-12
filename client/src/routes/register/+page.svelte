@@ -2,11 +2,14 @@
     import AuthenticatedRoute from "$lib/components/AuthenticatedRoute.svelte";
     import Form from "$lib/components/Form.svelte";
     import {register} from "$lib/api/auth";
+    import { goto } from '$app/navigation';
     import MessageModal from "$lib/components/MessageModal.svelte";
 
     let showMessage = $state(false);
     let message = $state('');
-    let modalOnClose = () => {};
+    let modalOnClose = () => {
+        showMessage = false;
+    };
 
     let loading = $state(false);
 
@@ -14,9 +17,7 @@
         if (username === "" || password === ""){
             message = "Please fill in all fields";
             showMessage = true;
-            modalOnClose = () => {
-                showMessage = false;
-            };
+            modalOnClose();
             return;
         }
 
@@ -25,10 +26,8 @@
             await register(username, password);
             message = 'Registration successful! Redirecting to login...';
             showMessage = true;
-            modalOnClose = () => {
-                showMessage = false;
-                window.location.href = "/login";
-            };
+            modalOnClose();
+            goto('/login')
         } finally {
             loading = false;
         }
