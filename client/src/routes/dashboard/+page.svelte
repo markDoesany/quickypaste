@@ -32,12 +32,25 @@
         handleCloseAddNote();
     };
 
-    const handleDeleteNote = async(noteId) => {
-        // if (!window.confirm("Delete note?")) return
+    let showDeleteModal = $state(false);
+    let currentNoteId = $state(null);
 
-        const res = await DeleteNote(noteId);
+    const handleDeleteNote = async(noteId) => {
+        currentNoteId = noteId;
+        showDeleteModal = true;
+    };
+
+    const confirmDelete = async() => {
+        const res = await DeleteNote(currentNoteId);
         if (res !== true) return
         notes = notes.filter(note => note.ID !== noteId);
+        showDeleteModal = false;
+        messageModal.show('Note deleted successfully', 'success');
+    };
+
+    const cancelDelete = () => {
+        showDeleteModal = false;
+        currentNoteId = null;
     };
 
     const handleUpdateNote = async(note) => {
@@ -76,5 +89,34 @@
     </button>
 </main>
 
-      
-
+<!-- Delete Confirmation Modal -->
+{#if showDeleteModal}
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-99">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full relative border-2 border-gray-800">
+            <button
+                class="absolute top-2 right-2 text-gray-800 hover:text-gray-600"
+                aria-label="Close"
+                on:click={cancelDelete}
+            >
+                &times;
+            </button>
+            <div class="text-center text-lg font-semibold mb-4 text-gray-800">
+                Delete Note?
+            </div>
+            <div class="flex gap-4 justify-center">
+                <button
+                    class="px-4 py-2 bg-red-500 hover:bg-red-600 rounded font-bold text-white border-2 border-gray-800 transition-all duration-300 transform hover:scale-105"
+                    on:click={confirmDelete}
+                >
+                    Delete
+                </button>
+                <button
+                    class="px-4 py-2 bg-gray-500 hover:bg-gray-600 rounded font-bold text-white border-2 border-gray-800 transition-all duration-300 transform hover:scale-105"
+                    on:click={cancelDelete}
+                >
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+{/if}
