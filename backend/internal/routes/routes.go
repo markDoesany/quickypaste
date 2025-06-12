@@ -21,7 +21,7 @@ func RegisterNoteRoutes(r *mux.Router) {
 	// All note routes are protected with authentication middleware
 	r.HandleFunc("/api/notes", middleware.AuthMiddleware(handler.CreateNote)).Methods("POST")
 	r.HandleFunc("/api/notes", middleware.AuthMiddleware(handler.GetAllNotes)).Methods("GET")
-	r.HandleFunc("/api/notes/{id}", middleware.AuthMiddleware(handler.GetNote)).Methods("GET")
+	r.HandleFunc("/api/notes/{id}", handler.GetNote).Methods("GET")
 	r.HandleFunc("/api/notes/{id}", middleware.AuthMiddleware(handler.DeleteNote)).Methods("DELETE")
 	r.HandleFunc("/api/notes/{id}", middleware.AuthMiddleware(handler.UpdateNote)).Methods("PUT")
 }

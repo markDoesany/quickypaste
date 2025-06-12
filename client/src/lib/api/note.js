@@ -15,7 +15,6 @@ export const AddNewNote = async (note) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log("New Note:",res.data)
         return res.data
     } catch (error) {
         console.error(error)
@@ -37,7 +36,6 @@ export const GetNotes = async () => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log("Notes:",res.data)
         return res.data
     } catch (error) {
         console.error(error)
@@ -48,7 +46,6 @@ export const GetNotes = async () => {
 export const GetNote = async (id) => {
     try {
         const res  = await axios.get(`${PUBLIC_BASE_API_URL}/notes/${id}`)
-        console.log("Note:",res.data)
         return res.data
     } catch (error) {
         console.error(error)
@@ -69,7 +66,6 @@ export const DeleteNote = async (id) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log("Deleted Note:",res.data)
         alert(res.data.message)
         return true
     } catch (error) {
@@ -92,7 +88,6 @@ export const UpdateNote = async (updatedNote) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log("Updated Note:",res.data)
         return res.data
     } catch (error) {
         console.error(error)
