@@ -2,9 +2,32 @@
     import AuthenticatedRoute from "$lib/components/AuthenticatedRoute.svelte";
     import Form from "$lib/components/Form.svelte";
     import {register} from "$lib/api/auth";
+    import MessageModal from "$lib/components/MessageModal.svelte";
+
+    let showMessage = false;
+    let message = '';
+    let modalOnClose = () => {};
+
+    let loading = false;
 
     const handleRegister = async({username, password}) => {
-        await register(username, password);
+        if (username === "" || password === ""){
+            alert("Please fill in all fields")
+            return
+        }
+
+        loading = true;
+        try {
+            await register(username, password);
+            message = 'Registration successful! Redirecting to login...';
+            showMessage = true;
+            modalOnClose = () => {
+                showMessage = false;
+                window.location.href = "/login";
+            };
+        } finally {
+            loading = false;
+        }
     }
 </script>
 
@@ -20,5 +43,10 @@
     <div class="w-full max-w-md p-5">
         <h2 class="text-center text-2xl font-bold mb-6">Register Form</h2>
         <Form onSubmit={handleRegister} buttonText="Register"/>
+        <MessageModal 
+            message={message}
+            show={showMessage}
+            onClose={modalOnClose}
+        />
     </div>
 </main>

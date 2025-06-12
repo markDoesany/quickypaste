@@ -2,6 +2,11 @@
     import { Copy, Edit, X, Share2, Trash } from 'lucide-svelte';
     import { formatReadableDate } from '../../utils/helper';
     import './css/index.css'
+    import MessageModal from './MessageModal.svelte';
+
+    let showMessage = false;
+    let message = '';
+    let modalOnClose = () => {};
 
     export let note;
     export let onDeleteNote;
@@ -42,8 +47,11 @@
         e.stopPropagation();
         try {
             await navigator.clipboard.writeText(note.content);
-            alert("Note copied to clipboard");
-            console.log("Copy content")
+            message = 'Note copied to clipboard';
+            showMessage = true;
+            modalOnClose = () => {
+                showMessage = false;
+            };
         } catch (error) {
             console.error("Failed to copy: ", error);
         }
@@ -53,8 +61,11 @@
         e.stopPropagation();
         try {
             await navigator.clipboard.writeText(note.shareable_link);
-            alert("Link copied to clipboard");
-            console.log("Copy link")
+            message = 'Link copied to clipboard';
+            showMessage = true;
+            modalOnClose = () => {
+                showMessage = false;
+            };
         } catch (error) {
             console.error("Failed to copy: ", error);
         }
@@ -62,8 +73,11 @@
 
     const handleDeleteNote = (e) => {
         e.stopPropagation();
-        onDeleteNote(note.ID)
-        console.log("Delete content")
+        message = 'Are you sure you want to delete this note?';
+        showMessage = true;
+        modalOnClose = () => {
+            showMessage = false;
+        };
     }
 
     const handleKeyDown = (e) => {
@@ -77,6 +91,12 @@
         expanded = false;
         isEditing = false;
     };
+
+    <MessageModal 
+        message={message}
+        show={showMessage}
+        onClose={modalOnClose}
+    />
 </script>
 
 <div 

@@ -1,7 +1,15 @@
 <script>
     import './css/index.css'
+    import { Loading } from 'lucide-svelte';
     let form = $state({ username: '', password: '' });
-    let { onSubmit, buttonText = "Submit" } = $props();
+    let { onSubmit, buttonText = "Submit", loading = false } = $props();
+
+    $effect(() => {
+        if (loading) {
+            form.username = '';
+            form.password = '';
+        }
+    });
 
     const handleSubmitForm = (event, sendForm) =>{
         event.preventDefault();
@@ -33,9 +41,14 @@
     <div class="flex items-center justify-between">
         <button 
             type="submit" 
-            class="focus:outline-none focus:shadow-outline py-2 px-4 rounded cursor-pointer"
+            class="focus:outline-none focus:shadow-outline py-2 px-4 rounded cursor-pointer flex items-center justify-center gap-2"
+            disabled={loading}
         >
-            {buttonText}
+            {#if loading}
+                <Loading class="w-4 h-4 animate-spin" />
+            {:else}
+                {buttonText}
+            {/if}
         </button>
     </div>
     <div class="mt-4 text-center">

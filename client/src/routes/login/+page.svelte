@@ -3,14 +3,21 @@
     import Form from "$lib/components/Form.svelte";
     import { login } from "$lib/api/auth";
 
+    let loading = false;
+
     const handleLogin = async({username, password}) =>{
         if (username === "" || password === ""){
             alert("Please fill in all fields")
             return
         }
 
-       await login(username, password);
-}
+        loading = true;
+        try {
+            await login(username, password);
+        } finally {
+            loading = false;
+        }
+    }
 </script>
 
 <style>

@@ -7,7 +7,6 @@ export const login = async (username, password) => {
         localStorage.setItem("token", res.data.token)
         localStorage.setItem("username", username)
 
-        console.log(res.data.message)
         window.location.href = "/dashboard"
     } catch (error) {
         console.error(error)
@@ -18,7 +17,6 @@ export const login = async (username, password) => {
 export const register = async(username, password) => {
     try {
         const res = await axios.post(`${PUBLIC_BASE_API_URL}/register`, {username, password})
-        console.log(res.data.message)
         alert(res.data.message || "User registered successfully")
         window.location.href = "/login"
     } catch (error) {

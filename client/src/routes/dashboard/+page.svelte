@@ -14,21 +14,17 @@
         if (fetchedNotes.length === 0) return
         
         notes = fetchedNotes;
-        console.log('Notes:', notes);
     })
 
     const handleAddClick = () => {
-        console.log('Add button clicked');
         addNote = true;
     };
 
     const handleCloseAddNote = () => {
-        console.log('Close add note');
         addNote = false;
     };
 
     const handleAddNewNote = async(note) => {
-        console.log('Add new note',note.content);
         const res = await AddNewNote(note);
         if (!res) return
         
@@ -39,14 +35,12 @@
     const handleDeleteNote = async(noteId) => {
         if (!window.confirm("Delete note?")) return
 
-        console.log('Delete note', noteId);
         const res = await DeleteNote(noteId);
         if (res !== true) return
         notes = notes.filter(note => note.ID !== noteId);
     };
 
     const handleUpdateNote = async(note) => {
-        console.log('Update note', note);
         const res = await UpdateNote(note);
         if (!res) return
 
