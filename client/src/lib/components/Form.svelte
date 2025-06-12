@@ -1,6 +1,6 @@
 <script>
     import './css/index.css'
-    import { Loading } from 'lucide-svelte';
+    import { Loader } from 'lucide-svelte';
     let form = $state({ username: '', password: '' });
     let { onSubmit, buttonText = "Submit", loading = false } = $props();
 
@@ -45,7 +45,7 @@
             disabled={loading}
         >
             {#if loading}
-                <Loading class="w-4 h-4 animate-spin" />
+                <Loader class="w-4 h-4 animate-spin" />
             {:else}
                 {buttonText}
             {/if}
