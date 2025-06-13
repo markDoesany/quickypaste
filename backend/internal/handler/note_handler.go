@@ -83,7 +83,7 @@ func GetNote(w http.ResponseWriter, r *http.Request) {
 	id := vars["id"]
 
 	var note models.Note
-	if err := database.DB.First(&note, id).Error; err != nil {
+	if err := database.DB.Where("id = ?", id).First(&note).Error; err != nil {
 		utils.WriteAPIError(w, utils.NewAPIError(http.StatusNotFound, "The note was not found"))
 		return
 	}
@@ -96,7 +96,7 @@ func DeleteNote(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
 
-	if err := database.DB.Delete(&models.Note{}, id).Error; err != nil {
+	if err := database.DB.Where("id = ?", id).Delete(&models.Note{}).Error; err != nil {
 		utils.WriteAPIError(w, utils.NewAPIError(http.StatusInternalServerError, "Server error. Unable to delete the note."))
 		return
 	}
@@ -121,7 +121,7 @@ func UpdateNote(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 
 	var note models.Note
-	if err := database.DB.First(&note, id).Error; err != nil {
+	if err := database.DB.Where("id = ?", id).First(&note).Error; err != nil {
 		utils.WriteAPIError(w, utils.NewAPIError(http.StatusInternalServerError, "The requested note does not exist"))
 		return
 	}
