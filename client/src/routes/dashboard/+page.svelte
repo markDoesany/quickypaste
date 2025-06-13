@@ -54,7 +54,7 @@
                 loading = false;
                 return
             } 
-            notes = notes.filter(note => note.ID !== currentNoteId);
+            notes = notes.filter(note => note.id !== currentNoteId);
             showDeleteModal = false;
        } catch (error) {
             console.error(error)
@@ -72,7 +72,7 @@
         const res = await UpdateNote(note);
         if (!res) return
 
-        notes = notes.map(n => n.ID === note.ID ? note : n);
+        notes = notes.map(n => n.id === note.id ? note : n);
     }
 </script>
 

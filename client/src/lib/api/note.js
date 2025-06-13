@@ -81,7 +81,7 @@ export const UpdateNote = async (updatedNote) => {
         return "User not logged in."
     }
     try {
-        const res  = await axios.put(`${PUBLIC_BASE_API_URL}/notes/${updatedNote.ID}`, updatedNote, {
+        const res  = await axios.put(`${PUBLIC_BASE_API_URL}/notes/${updatedNote.id}`, updatedNote, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'

@@ -73,7 +73,7 @@
 
     const handleDeleteNote = (e) => {
         e.stopPropagation();
-        onDeleteNote(note.ID);
+        onDeleteNote(note.id);
     }
 
     const handleKeyDown = (e) => {
