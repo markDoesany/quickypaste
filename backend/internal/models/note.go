@@ -1,10 +1,13 @@
 package models
 
-import "gorm.io/gorm"
-import "time"
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
 
 type Note struct {
-	ID            string `gorm:"primaryKey;type:text" json:"id"`
+	ID            string `gorm:"primaryKey;type:text;default:gen_random_uuid()" json:"id"`
 	CreatedAt     time.Time
 	UpdatedAt     time.Time
 	DeletedAt     gorm.DeletedAt `gorm:"index" json:"deleted_at"`
