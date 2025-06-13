@@ -49,7 +49,7 @@ func CreateNote(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	note.ShareableLink = fmt.Sprintf("https://quickypaste.vercel.app/notes/%d", note.ID)
+	note.ShareableLink = fmt.Sprintf("https://quickpaste.qappslock.com/notes/%s", note.ID)
 	if err := database.DB.Save(&note).Error; err != nil {
 		utils.WriteAPIError(w, utils.NewAPIError(http.StatusInternalServerError, "Server error. Please try again."))
 		return
