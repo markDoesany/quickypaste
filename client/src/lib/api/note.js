@@ -28,7 +28,7 @@ export const GetNotes = async () => {
     if (!token) {
         return "User not logged in."
     }
-
+    
     try {
         const res  = await axios.get(`${PUBLIC_BASE_API_URL}/notes`, {
             headers: {
@@ -38,8 +38,16 @@ export const GetNotes = async () => {
         })
         return res.data
     } catch (error) {
-        console.error(error)
-        alert(error.response?.data.message || "Unable to fetch the notes")
+        console.error(error);
+        if (error.response?.status === 401) {
+            alert(error.response?.data?.message || "Session expired. Log in again.");
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            window.location.href = '/login';
+            return null;
+        }
+        alert(error.response?.data?.message || "Unable to fetch the notes");
+        return null;
     }
 }
 
@@ -60,7 +68,7 @@ export const DeleteNote = async (id) => {
         return "User not logged in."
     }
     try {
-        const res  = await axios.delete(`${PUBLIC_BASE_API_URL}/notes/${id}`, {
+        await axios.delete(`${PUBLIC_BASE_API_URL}/notes/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
